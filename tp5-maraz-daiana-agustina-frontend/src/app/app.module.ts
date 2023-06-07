@@ -6,11 +6,16 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Punto1ProductoComponent } from './components/punto1-producto/punto1-producto.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    Punto1ProductoComponent
+    Punto1ProductoComponent,
+    MenuComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
