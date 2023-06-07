@@ -25,30 +25,29 @@ transaccionCtrl.createTransaccion = async (req, res) => {
 }
 
 transaccionCtrl.getTransaccionesDeUnCliente = async (req, res) => {
-    const {email} = req.params;
+    const { email } = req.params;
 
-    try{
-        const transacciones = await Transaccion.find({emailCliente: email});
+    try {
+        const transacciones = await Transaccion.find({ emailCliente: email });
         res.json(transacciones);
-    }catch(error){
-        res.status(500).json({error: 'Error al obtener el histórico de transacciones del cliente'})
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener el histórico de transacciones del cliente' })
     }
-    
+
 }
 
-transaccionCtrl.getTransaccionesPorMonedas = async (req,res) => {
-    const {monedaO, monedaD } = req.params; //se tienen que llamar tal cual como estan en transaccion.route
-
-    try{
-        const transacciones = await Transaccion.find({
-            monedaOrigen: monedaO,
-            monedaDestino: monedaD
-        });
-        res.json(transacciones);
-    }catch(error){
-        res.status(500).json({error: 'Error al obtener las transacciones'})
+transaccionCtrl.getTransaccionesPorMonedas = async (req, res) => {
+    criteria = {};
+    if (req.query.origen != null && req.query.origen != "") {
+        criteria.monedaOrigen = req.query.origen;
     }
-}
+    if (req.query.destino != null && req.query.destino != "") {
+        criteria.monedaDestino = req.query.destino;
+    }
+
+    var transacciones = await Transaccion.find(criteria);
+    res.json(transacciones);
+};
 
 transaccionCtrl.deleteTransaccion = async (req, res) => {
     try {

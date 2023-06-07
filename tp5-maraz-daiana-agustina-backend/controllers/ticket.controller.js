@@ -71,13 +71,12 @@ ticketCtrl.deleteTicket = async (req, res) => {
 }
 
 ticketCtrl.getEspectadoresPorCategoria = async (req, res) => {
-    const { cat } = req.params;
-    
     try {
-        const tickets = await Ticket.find({
-            categoriaEspectador: cat
-        }).populate("espectador");
-
+        let criteria = {};
+        if (req.query.categoria != null && req.query.categoria != "") {
+            criteria.categoriaEspectador = req.query.categoria;
+        }
+        var tickets = await Ticket.find(criteria).populate("espectador");
         res.json(tickets);
     } catch (error) {
         res.status(500).json({ error: 'Error al obtener los tickets por categoria del espectador' })
