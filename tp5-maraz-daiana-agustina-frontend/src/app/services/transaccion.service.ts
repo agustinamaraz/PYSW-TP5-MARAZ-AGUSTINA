@@ -41,4 +41,21 @@ export class TransaccionService {
 
     return this.http.get("https://currency-converter18.p.rapidapi.com/api/v1/supportedCurrencies",httpOptions);
   }
+
+  //-----------------------------------------------BACKEND
+
+  getTransacciones():Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {
+          
+        }
+      ),
+
+      params: new HttpParams()
+      
+    }
+
+    return this.http.get("http://localhost:3000/api/transaccion", httpOptions);
+  }
 }

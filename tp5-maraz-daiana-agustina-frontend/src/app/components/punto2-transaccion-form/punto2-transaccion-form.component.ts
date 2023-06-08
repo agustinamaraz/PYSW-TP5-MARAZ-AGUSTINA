@@ -44,4 +44,8 @@ export class Punto2TransaccionFormComponent implements OnInit {
     )
   }
 
+  public guardarTransaccion(transaccion:Transaccion){
+    
+  }
+
 }
