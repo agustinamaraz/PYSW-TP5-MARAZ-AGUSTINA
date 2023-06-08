@@ -3,8 +3,8 @@
         TRANSACCIONES
     </div>
 
-    <button type="button" class="btn btn-primary w-100" (click)="cargarTransacciones()">RECUPERAR TODAS</button>
-    <button type="button" class="btn btn-warning w-100 mt-3" (click)="cargarPorFiltro()">RECUPERAR POR FILTRO</button>
+    <button type="button" class="btn btn-primary w-100" (click)="obtenerTransacciones()">RECUPERAR TODAS</button>
+    <button type="button" class="btn btn-warning w-100 mt-3" (click)="filtro=true">RECUPERAR POR FILTRO</button>
 
     <table class="table table-bordered table-hover border-primary mt-5" *ngIf="filtro==false">
         <thead class="table-dark">
@@ -31,28 +31,49 @@
         </tbody>
     </table>
 
-    <table class="table table-striped table-hover mt-5" *ngIf="filtro==true">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">MONEDA ORIGEN</th>
-                <th scope="col">MONEDA DESTINO</th>
-                <th scope="col">CANTIDAD ORIGEN</th>
-                <th scope="col">CANTIDAD DESTINO</th>
-                <th scope="col">EMAIL CLIENTE</th>
-                <th scope="col">TASA CONVERSION</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- <tr *ngFor="let t of transacciones">
-                <th scope="row">{{t._id}}</th>
-                <td>{{t.monedaOrigen}}</td>
-                <td>{{t.monedaDestino}}</td>
-                <td>{{t.cantidadOrigen}}</td>
-                <td>{{t.cantidadDestino}}</td>
-                <td>{{t.emailCliente}}</td>
-                <td>{{t.tasaConversion}}</td>
-            </tr> -->
-        </tbody>
-    </table>
+    <div *ngIf="filtro==true">
+        <form class="p-3 m-3 bg-success-subtle">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Ingresar Moneda Origen:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="monedaOrigen" [(ngModel)]="monedaOrigen">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Ingresar Moneda Destino:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="monedaDestino" [(ngModel)]="monedaDestino">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="obtenerTransaccionesPorFiltro()">Filtrar</button>
+        </form>
+
+        <div *ngIf="transaccionesFiltro.length==0 && click==true">
+            <h2 class="bg-danger p-2 text-white text-center">No se encontraron transacciones con ese filtro</h2>
+        </div>
+
+        <table class="table table-striped table-hover mt-5" *ngIf="transaccionesFiltro.length!=0">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">MONEDA ORIGEN</th>
+                    <th scope="col">MONEDA DESTINO</th>
+                    <th scope="col">CANTIDAD ORIGEN</th>
+                    <th scope="col">CANTIDAD DESTINO</th>
+                    <th scope="col">EMAIL CLIENTE</th>
+                    <th scope="col">TASA CONVERSION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let t of transaccionesFiltro">
+                    <th scope="row">{{t._id}}</th>
+                    <td>{{t.monedaOrigen}}</td>
+                    <td>{{t.monedaDestino}}</td>
+                    <td>{{t.cantidadOrigen}}</td>
+                    <td>{{t.cantidadDestino}}</td>
+                    <td>{{t.emailCliente}}</td>
+                    <td>{{t.tasaConversion}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>

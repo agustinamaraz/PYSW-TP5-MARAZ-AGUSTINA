@@ -58,4 +58,20 @@ export class TransaccionService {
 
     return this.http.get("http://localhost:3000/api/transaccion", httpOptions);
   }
+
+  getTransaccionesPorFiltro(monedaOrigen:string,monedaDestino:string):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {
+          
+        }
+      ),
+
+      params: new HttpParams()
+        .append("origen",monedaOrigen)
+        .append("destino",monedaDestino)
+    }
+
+    return this.http.get("http://localhost:3000/api/transaccion/moneda", httpOptions);
+  }
 }

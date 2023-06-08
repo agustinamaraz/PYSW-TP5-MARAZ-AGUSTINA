@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Console } from 'console';
+import { Console, error } from 'console';
 import { Transaccion } from 'src/app/models/transaccion';
 import { TransaccionService } from 'src/app/services/transaccion.service';
+import { resourceLimits } from 'worker_threads';
 
 @Component({
   selector: 'app-punto2-transaccion',
@@ -9,43 +10,60 @@ import { TransaccionService } from 'src/app/services/transaccion.service';
   styleUrls: ['./punto2-transaccion.component.css']
 })
 export class Punto2TransaccionComponent implements OnInit {
-  transacciones:Array<Transaccion>;
-  filtro!:boolean;
+  transacciones: Array<Transaccion>;
+  transaccionesFiltro: Array<Transaccion>;
+  filtro!: boolean;
+  click!:boolean;
+  monedaOrigen!: string;
+  monedaDestino!: string;
 
-  constructor(private transaccionService:TransaccionService){
+  constructor(private transaccionService: TransaccionService) {
     this.transacciones = new Array<Transaccion>();
+    this.transaccionesFiltro = new Array<Transaccion>();
 
-    this.obtenerTransacciones();
   }
 
   ngOnInit(): void {
   }
 
-  obtenerTransacciones(){
+  obtenerTransacciones() {
+    this.filtro = false;
+
     this.transaccionService.getTransacciones().subscribe(
-      result=>{
+      result => {
         let unaTransaccion = new Transaccion();
-        result.forEach((element:any) => {
-          Object.assign(unaTransaccion,element);
+        result.forEach((element: any) => {
+          Object.assign(unaTransaccion, element);
           this.transacciones.push(unaTransaccion);
           unaTransaccion = new Transaccion();
         });
         console.log(result);
       },
-      error=>{
+      error => {
         console.log(error);
       }
     )
   }
 
-  cargarTransacciones(){
-    this.filtro=false;
+  obtenerTransaccionesPorFiltro() {
+    this.click = true;
+    this.transaccionesFiltro = new Array<Transaccion>();
 
-  }
-
-  cargarPorFiltro(){
-    this.filtro=true;
-    
+    this.transaccionService.getTransaccionesPorFiltro(this.monedaOrigen, this.monedaDestino).subscribe(
+      result => {
+        // let unaTransaccion = new Transaccion();
+        // result.forEach((element: any) => {
+        //   Object.assign(unaTransaccion, element);
+        //   this.transaccionesFiltro.push(unaTransaccion);
+        //   unaTransaccion = new Transaccion();
+        // });
+        console.log(result);
+        this.transaccionesFiltro = result;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }
