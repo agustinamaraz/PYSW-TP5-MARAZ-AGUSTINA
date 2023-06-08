@@ -11,6 +11,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { Punto1ProductoFormComponent } from './components/punto1-producto-form/punto1-producto-form.component';
 import { Punto2TransaccionFormComponent } from './components/punto2-transaccion-form/punto2-transaccion-form.component';
 import { Punto2TransaccionComponent } from './components/punto2-transaccion/punto2-transaccion.component';
+import { Punto3TicketComponent } from './components/punto3-ticket/punto3-ticket.component';
+import { Punto3TicketFormComponent } from './components/punto3-ticket-form/punto3-ticket-form.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { Punto2TransaccionComponent } from './components/punto2-transaccion/punt
     FooterComponent,
     Punto1ProductoFormComponent,
     Punto2TransaccionFormComponent,
-    Punto2TransaccionComponent
+    Punto2TransaccionComponent,
+    Punto3TicketComponent,
+    Punto3TicketFormComponent
   ],
   imports: [
     BrowserModule,
