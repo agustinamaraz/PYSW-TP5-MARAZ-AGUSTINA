@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Punto1ProductoComponent } from './components/punto1-producto/punto1-producto.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { Punto1ProductoFormComponent } from './components/punto1-producto-form/punto1-producto-form.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AppComponent,
     Punto1ProductoComponent,
     MenuComponent,
-    FooterComponent
+    FooterComponent,
+    Punto1ProductoFormComponent
   ],
   imports: [
     BrowserModule,
