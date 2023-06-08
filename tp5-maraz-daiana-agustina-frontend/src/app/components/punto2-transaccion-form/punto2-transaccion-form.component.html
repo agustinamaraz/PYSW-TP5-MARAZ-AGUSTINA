@@ -1,1 +1,41 @@
-<p>punto2-transaccion-form works!</p>
+<div class="m-5 bg-secondary d-flex justify-content-center align-items-center">
+    
+    <!--FORM-->
+    <form class="m-5 w-50 formulario-azul text-white p-3">
+        <h3 class="text-center bg-primary bg-opacity-50 p-2">Conversor De Divisas</h3>
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Email: </label>
+            <input type="email" class="form-control" id="cantidad" name="emailCliente" required
+                placeholder="Ingrese email" [(ngModel)]="transaccion.emailCliente">
+        </div>
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Tasa de Conversion: </label>
+            <input type="number" class="form-control" id="cantidad" name="tasaConversion" required
+                placeholder="Ingrese tasa de conversion" [(ngModel)]="transaccion.tasaConversion">
+        </div>
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Cantidad:</label>
+            <input type="number" class="form-control" id="cantidad" name="cantidadOrigen" required
+                placeholder="Ingrese cantidad" [(ngModel)]="transaccion.cantidadOrigen">
+        </div>
+        <div class="mb-3">
+            <label for="moneda" class="form-label text-white">De:</label>
+            <select name="monedaOrigen" class="form-select" id="moneda" [(ngModel)]="transaccion.monedaOrigen">
+                <option *ngFor="let m of monedas" value="{{m.symbol}}">{{m.symbol}}-{{m.name}}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="moneda2" class="form-label text-white">A:</label>
+            <select name="monedaDestino" class="form-select" id="moneda2" [(ngModel)]="transaccion.monedaDestino">
+                <option *ngFor="let m of monedas" value="{{m.symbol}}">{{m.symbol}}-{{m.name}}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="moneda2" class="form-label text-white">Cantidad Destino:</label>
+            <div class="w-100 bg-white p-4 text-black fw-bold" disabled>{{transaccion.cantidadDestino | number:'1.1-3'}}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-warning w-100" (click)="convertir()">Convertir</button>
+    </form>
+    <!--FORM-->
+</div>
