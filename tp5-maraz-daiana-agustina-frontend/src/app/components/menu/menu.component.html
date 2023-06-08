@@ -8,15 +8,15 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" aria-current="page" href="#" routerLinkActive="active">Home</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             P1-Gestión de Producto
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" [routerLink]="['producto']">Listado de Productos</a></li>
-            <li><a class="dropdown-item" [routerLink]="['producto-form/0']">Formulario de Producto</a></li>
+            <li><a class="dropdown-item" [routerLink]="['producto']" routerLinkActive="active">Listado de Productos</a></li>
+            <li><a class="dropdown-item" [routerLink]="['producto-form/0']" routerLinkActive="active">Formulario de Producto</a></li>
           </ul>
         </li>
       </ul>

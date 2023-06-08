@@ -1,20 +1,36 @@
 <div class="bg-body-secondary">
   <div class="m-5 p-3 text-center fw-bold h1 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
+    TODOS LOS PRODUCTOS
+  </div>
+
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="card m-3" style="width: 18rem;" *ngFor="let p of productos">
+      <img src="{{p.imagen}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{p.nombre}}</h5>
+        <p class="card-text">{{p.descripcion}}</p>
+        <p class="card-text">Stock disponible: {{p.stock}} unidades</p>
+        <a class="m-2 w-100 btn btn-primary">Precio: ${{p.precio}}</a>
+        <a class="m-2 w-100 btn btn-warning" (click)="modificarProducto(p)">Modificar Producto</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="m-5 p-3 text-center fw-bold h1 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
     PRODUCTOS DESTACADOS
   </div>
 
   <div id="slider" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       
-      <div class="carousel-item active d-flex justify-content-center align-items-center" *ngFor="let pd of productosDestacados">
-        <div class="card m-3" style="width: 18rem;">
+      <div class="carousel-item active d-flex justify-content-center align-items-center">
+        <div class="card m-3" style="width: 18rem;" *ngFor="let pd of productosDestacados">
           <img src="{{pd.imagen}}" class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">{{pd.nombre}}</h5>
             <p class="card-text">{{pd.descripcion}}</p>
-            <p class="card-text">Precio: ${{pd.precio}}</p>
             <p class="card-text">Stock disponible: {{pd.stock}} unidades</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <a class="btn btn-primary">Precio: ${{pd.precio}}</a>
           </div>
         </div>
       </div>
