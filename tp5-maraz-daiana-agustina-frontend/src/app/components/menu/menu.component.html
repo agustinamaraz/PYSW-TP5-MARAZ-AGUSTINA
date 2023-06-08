@@ -10,6 +10,8 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" href="#" routerLinkActive="active">Home</a>
         </li>
+
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             P1-Gestión de Producto
@@ -19,6 +21,19 @@
             <li><a class="dropdown-item" [routerLink]="['producto-form/0']" routerLinkActive="active">Formulario de Producto</a></li>
           </ul>
         </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            P2-Gestión de Transacción
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" [routerLink]="['transaccion']" routerLinkActive="active">Listado de Transacciones</a></li>
+            <li><a class="dropdown-item" [routerLink]="['transaccion-form/0']" routerLinkActive="active">Formulario de Transaccion</a></li>
+          </ul>
+        </li>
+
+
       </ul>
     </div>
   </div>

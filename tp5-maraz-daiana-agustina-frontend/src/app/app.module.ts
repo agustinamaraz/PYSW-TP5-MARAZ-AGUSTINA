@@ -9,6 +9,8 @@ import { Punto1ProductoComponent } from './components/punto1-producto/punto1-pro
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { Punto1ProductoFormComponent } from './components/punto1-producto-form/punto1-producto-form.component';
+import { Punto2TransaccionFormComponent } from './components/punto2-transaccion-form/punto2-transaccion-form.component';
+import { Punto2TransaccionComponent } from './components/punto2-transaccion/punto2-transaccion.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { Punto1ProductoFormComponent } from './components/punto1-producto-form/p
     Punto1ProductoComponent,
     MenuComponent,
     FooterComponent,
-    Punto1ProductoFormComponent
+    Punto1ProductoFormComponent,
+    Punto2TransaccionFormComponent,
+    Punto2TransaccionComponent
   ],
   imports: [
     BrowserModule,
