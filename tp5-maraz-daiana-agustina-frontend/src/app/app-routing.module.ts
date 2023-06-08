@@ -4,6 +4,8 @@ import { Punto1ProductoComponent } from './components/punto1-producto/punto1-pro
 import { Punto1ProductoFormComponent } from './components/punto1-producto-form/punto1-producto-form.component';
 import { Punto2TransaccionComponent } from './components/punto2-transaccion/punto2-transaccion.component';
 import { Punto2TransaccionFormComponent } from './components/punto2-transaccion-form/punto2-transaccion-form.component';
+import { Punto3TicketComponent } from './components/punto3-ticket/punto3-ticket.component';
+import { Punto3TicketFormComponent } from './components/punto3-ticket-form/punto3-ticket-form.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path:"transaccion-form/:id",
     component: Punto2TransaccionFormComponent
+  },
+  {
+    path:"ticket",
+    component: Punto3TicketComponent
+  },
+  {
+    path:"ticket-form/:id",
+    component: Punto3TicketFormComponent
   }
 ];
 
