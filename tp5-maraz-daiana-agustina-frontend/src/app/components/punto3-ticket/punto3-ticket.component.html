@@ -1,1 +1,70 @@
-<p>punto3-ticket works!</p>
+<div class="bg-secondary-subtle p-3">
+    <div class="m-5 p-3 text-center fw-bold h1 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
+        TICKETS
+    </div>
+
+    <table class="table table-bordered table-hover border-primary mt-5">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">PRECIO</th>
+                <th scope="col">CATEGORIA ESPECTADOR</th>
+                <th scope="col">FECHA DE COMPRA</th>
+                <th scope="col">ESPECTADOR</th>
+                <th scope="col">Operaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let t of tickets">
+                <th scope="row">{{t._id}}</th>
+                <td>{{t.precioTicket}}</td>
+                <td>{{t.categoriaEspectador}}</td>
+                <td>{{t.fechaCompra}}</td>
+                <td>{{t.espectador.apellido}}, {{t.espectador.nombre}}</td>
+                <td>
+                    <button type="button" class="btn btn-warning" (click)="modificarTicket(t)">MODIFICAR TICKET</button>
+                    <button type="button" class="btn btn-danger" (click)="eliminarTicket(t)">ELIMINAR TICKET</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-primary w-100 mt-3" (click)="filtro=true">MOSTRAR TICKETS SEGÚN CATEGORIA
+        ESPECTADOR</button>
+
+    <div *ngIf="filtro==true">
+        <form class="p-3 m-3 bg-success-subtle">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Ingresar Categoria Espectador:</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="categoriaEspectador" [(ngModel)]="categoriaEspectador">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="obtenerTicketsPorCategoria()">Filtrar</button>
+        </form>
+
+        <div *ngIf="ticketsPorCategoria.length==0 && click==true">
+            <h2 class="bg-danger p-2 text-white text-center">No se encontraron transacciones con ese filtro</h2>
+        </div>
+
+        <table class="table table-striped table-hover mt-5" *ngIf="ticketsPorCategoria.length!=0">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">PRECIO</th>
+                    <th scope="col">CATEGORIA ESPECTADOR</th>
+                    <th scope="col">FECHA DE COMPRA</th>
+                    <th scope="col">ESPECTADOR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let t of ticketsPorCategoria">
+                    <th scope="row">{{t._id}}</th>
+                    <td>{{t.precioTicket}}</td>
+                    <td>{{t.categoriaEspectador}}</td>
+                    <td>{{t.fechaCompra}}</td>
+                    <td>{{t.espectador.apellido}}, {{t.espectador.nombre}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
