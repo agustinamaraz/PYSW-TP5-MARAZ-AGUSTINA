@@ -4,17 +4,12 @@
     <form class="m-5 w-50 formulario-azul text-white p-3">
         <h3 class="text-center bg-primary bg-opacity-50 p-2">Conversor De Divisas</h3>
         <div class="mb-3">
-            <label for="cantidad" class="form-label">Email: </label>
+            <label for="cantidad" class="form-label">Ingrese su Email: </label>
             <input type="email" class="form-control" id="cantidad" name="emailCliente" required
-                placeholder="Ingrese email" [(ngModel)]="transaccion.emailCliente">
+                placeholder="Ingrese su email" [(ngModel)]="transaccion.emailCliente">
         </div>
         <div class="mb-3">
-            <label for="cantidad" class="form-label">Tasa de Conversion: </label>
-            <input type="number" class="form-control" id="cantidad" name="tasaConversion" required
-                placeholder="Ingrese tasa de conversion" [(ngModel)]="transaccion.tasaConversion">
-        </div>
-        <div class="mb-3">
-            <label for="cantidad" class="form-label">Cantidad:</label>
+            <label for="cantidad" class="form-label">Cantidad a Convertir:</label>
             <input type="number" class="form-control" id="cantidad" name="cantidadOrigen" required
                 placeholder="Ingrese cantidad" [(ngModel)]="transaccion.cantidadOrigen">
         </div>
@@ -30,12 +25,24 @@
                 <option *ngFor="let m of monedas" value="{{m.symbol}}">{{m.symbol}}-{{m.name}}</option>
             </select>
         </div>
+        <!-- <div class="mb-3">
+            <label for="cantidad" class="form-label">Tasa de Conversion: </label>
+            <input type="number" class="form-control" id="cantidad" name="tasaConversion" required
+             [(ngModel)]="transaccion.tasaConversion" disabled>
+        </div> -->
         <div class="mb-3">
-            <label for="moneda2" class="form-label text-white">Cantidad Destino:</label>
+            <label for="moneda2" class="form-label text-white">Cantidad Convertida:</label>
             <div class="w-100 bg-white p-4 text-black fw-bold" disabled>{{transaccion.cantidadDestino | number:'1.1-3'}}
             </div>
         </div>
-        <button type="submit" class="btn btn-warning w-100" (click)="convertir()" (click)="guardarTransaccion(transaccion)">Convertir y Guardar Transacción</button>
+        <div class="mb-3">
+            <label for="moneda2" class="form-label text-white">Tasa de Conversión:</label>
+            <div class="w-100 bg-white p-4 text-black fw-bold" disabled >
+                {{tasaConversion}}
+            </div>
+        </div>
+        <button type="submit" class="btn btn-warning w-100" (click)="convertir()">Convertir</button>
+        <button *ngIf="habilitarGuardar==true" type="submit" class="btn btn-primary w-100 mt-2" (click)="guardarTransaccion()">Registrar Transaccion</button>
     </form>
     <!--FORM-->
 </div>

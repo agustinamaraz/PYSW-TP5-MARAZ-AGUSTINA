@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Transaccion } from '../models/transaccion';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +74,20 @@ export class TransaccionService {
     }
 
     return this.http.get("http://localhost:3000/api/transaccion/moneda", httpOptions);
+  }
+
+  createTransaccion(transaccion:Transaccion){
+    let httpOptions={
+      headers: new HttpHeaders(
+        {
+          "Content-type": "application/json"
+        }
+      ),
+      params: new HttpParams()
+    }
+
+    let body = JSON.stringify(transaccion);
+    
+    return this.http.post("http://localhost:3000/api/transaccion",body,httpOptions);
   }
 }
