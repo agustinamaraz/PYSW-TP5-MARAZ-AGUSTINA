@@ -10,6 +10,20 @@ export class TicketService {
 
   constructor(private http:HttpClient) { }
 
+  getTicket(id:string):Observable<any>{
+    let httpOptions={
+      headers: new HttpHeaders(
+        {
+
+        }
+      ),
+      params: new HttpParams()
+
+    }
+
+    return this.http.get("http://localhost:3000/api/ticket/"+id,httpOptions);
+  }
+
   getTickets():Observable<any>{
     let httpOptions={
       headers: new HttpHeaders(

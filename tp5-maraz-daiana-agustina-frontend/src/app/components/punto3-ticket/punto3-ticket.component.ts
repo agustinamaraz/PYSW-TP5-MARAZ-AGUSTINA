@@ -71,7 +71,7 @@ export class Punto3TicketComponent implements OnInit {
   }
 
   modificarTicket(ticket:Ticket){
-
+    this.router.navigate(["ticket-form",ticket._id])
   }
 
 }

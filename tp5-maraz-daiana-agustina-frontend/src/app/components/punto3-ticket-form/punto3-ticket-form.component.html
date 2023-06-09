@@ -1,1 +1,31 @@
-<p>punto3-ticket-form works!</p>
+<div class="m-5 bg-secondary d-flex justify-content-center align-items-center">
+    
+    <!--FORM-->
+    <form class="m-5 w-50 formulario-azul text-white p-3">
+        <h3 class="text-center bg-primary bg-opacity-75 p-2">Formulario Ticket</h3>
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Precio del Ticket: </label>
+            <input type="email" class="form-control" id="cantidad" name="precioTicket" required
+                placeholder="Ingrese precio del ticket" [(ngModel)]="ticket.precioTicket">
+        </div>
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Categoria Espectador: </label>
+            <input type="number" class="form-control" id="cantidad" name="categoriaEspectador" required
+                placeholder="Ingrese categoria del espectador" [(ngModel)]="ticket.categoriaEspectador">
+        </div>
+        <div class="mb-3">
+            <label for="cantidad" class="form-label">Fecha de Compra:</label>
+            <input type="date" class="form-control" id="cantidad" name="fechaCompra" required
+                placeholder="Ingrese fecha de compra" [(ngModel)]="ticket.fechaCompra">
+        </div>
+        <!-- <div class="mb-3">
+            <label for="moneda" class="form-label text-white">Espectador:</label>
+            <select name="monedaOrigen" class="form-select" id="moneda" [(ngModel)]="">
+                <option *ngFor="let m of monedas" value="{{m.symbol}}">{{m.symbol}}-{{m.name}}</option>
+            </select>
+        </div> -->
+        
+        <button type="submit" class="btn btn-warning w-100" (click)="guardarTicket(ticket)">Registrar Ticket</button>
+    </form>
+    <!--FORM-->
+</div>
