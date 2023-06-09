@@ -14,6 +14,7 @@ export class Punto3TicketFormComponent implements OnInit {
   ticket!: Ticket;
   accion!: string;
   espectadores!: Array<Espectador>;
+  copia!:string;
 
   constructor(private ticketService: TicketService, private activatedRoute: ActivatedRoute, private router: Router, private espectadorService: EspectadorService) {
     this.ticket = new Ticket();
@@ -23,7 +24,7 @@ export class Punto3TicketFormComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
       params => {
-        
+
 
         if (params['id'] == 0) {
           this.accion = "new";
@@ -41,7 +42,7 @@ export class Punto3TicketFormComponent implements OnInit {
     this.ticketService.getTicket(id).subscribe(
       (result) => {
         Object.assign(this.ticket, result);
-        this.ticket.espectador = this.espectadores.find(item => (item._id == this.ticket.espectador._id))!; //no funciona preguntar
+        this.ticket.espectador = this.espectadores.find(item => ((item._id) === this.ticket.espectador._id))!; //no funciona preguntar
         console.log(this.ticket.espectador);
         console.log(this.espectadores);
       },
@@ -56,6 +57,7 @@ export class Punto3TicketFormComponent implements OnInit {
       result => {
         if (result.status == 1) {
           alert(result.msg);
+          //this.router.navigate(["ticket"])
         }
       },
       error => {
@@ -63,7 +65,7 @@ export class Punto3TicketFormComponent implements OnInit {
       }
     )
 
-    this.router.navigate(["ticket"])
+
   }
 
   cargarEspectadores() {
@@ -84,5 +86,22 @@ export class Punto3TicketFormComponent implements OnInit {
     )
   }
 
+  modificarTicket(ticket: Ticket) {
+    this.ticketService.editTicket(ticket).subscribe(
+      result => {
+        if (result.status == 1) {
+          alert(result.msg);
+          this.router.navigate(["ticket"])
+        }
+      },
+      error => {
+        alert(error.msg);
+      }
+    )
+  }
+
+  public cancelar() {
+    this.router.navigate(["ticket"]);
+  }
 
 }

@@ -64,7 +64,7 @@ export class TicketService {
 
     let body = JSON.stringify(ticket);
     
-    return this.http.post("http://localhost:3000/api/ticket/",body,httpOptions);
+    return this.http.post("http://localhost:3000/api/ticket",body,httpOptions);
   }
 
   deleteTicket(id:string):Observable<any>{

@@ -31,6 +31,11 @@ const routes: Routes = [
   {
     path:"ticket-form/:id",
     component: Punto3TicketFormComponent
+  },
+  {
+    path:'',
+    redirectTo: '/producto',
+    pathMatch: 'full'
   }
 ];
 

@@ -25,7 +25,9 @@
             </select>
         </div>
         
-        <button type="submit" class="btn btn-warning w-100" (click)="guardarTicket(ticket)">Registrar Ticket</button>
+        <button *ngIf="accion=='new'" type="submit" class="btn btn-warning" (click)="guardarTicket(ticket)">Registrar Ticket</button>
+        <button *ngIf="accion=='update'" type="submit" class="btn btn-warning" (click)="modificarTicket(ticket)">Modicar Ticket</button>
+        <button type="submit" class="btn btn-danger ms-2" (click)="cancelar()">Cancelar</button>
     </form>
     <!--FORM-->
 </div>
