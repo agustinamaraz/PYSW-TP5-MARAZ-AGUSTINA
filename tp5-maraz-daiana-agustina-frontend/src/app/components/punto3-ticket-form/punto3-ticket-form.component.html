@@ -4,26 +4,26 @@
     <form class="m-5 w-50 formulario-azul text-white p-3">
         <h3 class="text-center bg-primary bg-opacity-75 p-2">Formulario Ticket</h3>
         <div class="mb-3">
-            <label for="cantidad" class="form-label">Precio del Ticket: </label>
-            <input type="email" class="form-control" id="cantidad" name="precioTicket" required
-                placeholder="Ingrese precio del ticket" [(ngModel)]="ticket.precioTicket">
+            <label for="precio" class="form-label">Precio del Ticket: </label>
+            <input type="number" class="form-control" id="precio"  required
+                placeholder="Ingrese precio del ticket" name="precioTicket" [(ngModel)]="ticket.precioTicket">
         </div>
         <div class="mb-3">
-            <label for="cantidad" class="form-label">Categoria Espectador: </label>
-            <input type="number" class="form-control" id="cantidad" name="categoriaEspectador" required
+            <label for="categoria" class="form-label">Categoria Espectador: </label>
+            <input type="text" class="form-control" id="categoria" name="categoriaEspectador" required
                 placeholder="Ingrese categoria del espectador" [(ngModel)]="ticket.categoriaEspectador">
         </div>
         <div class="mb-3">
-            <label for="cantidad" class="form-label">Fecha de Compra:</label>
-            <input type="date" class="form-control" id="cantidad" name="fechaCompra" required
+            <label for="fecha" class="form-label">Fecha de Compra:</label>
+            <input type="date" class="form-control" id="fecha" name="fechaCompra" required
                 placeholder="Ingrese fecha de compra" [(ngModel)]="ticket.fechaCompra">
         </div>
-        <!-- <div class="mb-3">
-            <label for="moneda" class="form-label text-white">Espectador:</label>
-            <select name="monedaOrigen" class="form-select" id="moneda" [(ngModel)]="">
-                <option *ngFor="let m of monedas" value="{{m.symbol}}">{{m.symbol}}-{{m.name}}</option>
+        <div class="mb-3">
+            <label for="espectador" class="form-label text-white">Espectador:</label>
+            <select name="espectador" class="form-select" id="espectador">
+                <option *ngFor="let espectador of espectadores" [ngValue]="espectador">{{espectador.apellido}}, {{espectador.nombre}}</option>
             </select>
-        </div> -->
+        </div>
         
         <button type="submit" class="btn btn-warning w-100" (click)="guardarTicket(ticket)">Registrar Ticket</button>
     </form>
