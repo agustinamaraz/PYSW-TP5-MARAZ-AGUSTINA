@@ -14,6 +14,7 @@ export class Punto3TicketFormComponent implements OnInit {
   ticket!: Ticket;
   accion!: string;
   espectadores!: Array<Espectador>;
+
   constructor(private ticketService: TicketService, private activatedRoute: ActivatedRoute, private router: Router, private espectadorService: EspectadorService) {
     this.ticket = new Ticket();
     this.espectadores = new Array<Espectador>();
@@ -22,14 +23,14 @@ export class Punto3TicketFormComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
       params => {
-        this.cargarEspectadores();
+        
 
         if (params['id'] == 0) {
           this.accion = "new";
-          
+          this.cargarEspectadores();
         } else {
           this.accion = "update";
-         
+          this.cargarEspectadores();
           this.cargarTicket(params['id']);
         }
       }
@@ -38,8 +39,11 @@ export class Punto3TicketFormComponent implements OnInit {
 
   cargarTicket(id: string) {
     this.ticketService.getTicket(id).subscribe(
-      result => {
+      (result) => {
         Object.assign(this.ticket, result);
+        this.ticket.espectador = this.espectadores.find(item => (item._id == this.ticket.espectador._id))!; //no funciona preguntar
+        console.log(this.ticket.espectador);
+        console.log(this.espectadores);
       },
       error => {
         console.log(error);
@@ -72,7 +76,7 @@ export class Punto3TicketFormComponent implements OnInit {
           unEspectador = new Espectador();
         });
 
-        console.log(this.espectadores);
+        //console.log(this.espectadores);
       },
       error => {
         console.log(error);
