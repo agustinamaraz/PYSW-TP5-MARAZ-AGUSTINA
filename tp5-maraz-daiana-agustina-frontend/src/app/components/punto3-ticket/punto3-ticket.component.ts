@@ -62,6 +62,7 @@ export class Punto3TicketComponent implements OnInit {
       result=>{
         if(result.status == 1){
           alert(result.msg);
+          window.location.reload();
         }
       },
       error=>{

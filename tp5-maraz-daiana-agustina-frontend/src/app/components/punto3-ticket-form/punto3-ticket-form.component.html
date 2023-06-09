@@ -20,13 +20,13 @@
         </div>
         <div class="mb-3">
             <label for="espectador" class="form-label text-white">Espectador:</label>
-            <select name="espectador" class="form-select" id="espectador">
+            <select class="form-select" id="espectador" name="espectador"  [(ngModel)]="ticket.espectador">
                 <option *ngFor="let espectador of espectadores" [ngValue]="espectador">{{espectador.apellido}}, {{espectador.nombre}}</option>
             </select>
         </div>
         
-        <button *ngIf="accion=='new'" type="submit" class="btn btn-warning" (click)="guardarTicket(ticket)">Registrar Ticket</button>
-        <button *ngIf="accion=='update'" type="submit" class="btn btn-warning" (click)="modificarTicket(ticket)">Modicar Ticket</button>
+        <button *ngIf="accion=='new'" type="submit" class="btn btn-warning" (click)="guardarTicket()">Registrar Ticket</button>
+        <button *ngIf="accion=='update'" type="submit" class="btn btn-warning" (click)="modificarTicket()">Modificar Ticket</button>
         <button type="submit" class="btn btn-danger ms-2" (click)="cancelar()">Cancelar</button>
     </form>
     <!--FORM-->
