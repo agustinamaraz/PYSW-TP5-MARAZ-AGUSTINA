@@ -46,6 +46,8 @@ export class Punto2TransaccionComponent implements OnInit {
   obtenerTransacciones() {
     this.filtro = false;
 
+    this.transacciones = new Array<Transaccion>();
+
     this.transaccionService.getTransacciones().subscribe(
       result => {
         let unaTransaccion = new Transaccion();
@@ -64,6 +66,7 @@ export class Punto2TransaccionComponent implements OnInit {
 
   obtenerTransaccionesPorFiltro() {
     this.click = true;
+
     this.transaccionesFiltro = new Array<Transaccion>();
 
     this.transaccionService.getTransaccionesPorFiltro(this.monedaOrigen, this.monedaDestino).subscribe(
