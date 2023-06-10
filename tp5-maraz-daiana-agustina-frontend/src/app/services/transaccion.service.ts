@@ -45,6 +45,21 @@ export class TransaccionService {
 
   //-----------------------------------------------BACKEND
 
+  getTransaccion(id:string):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders(
+        {
+          
+        }
+      ),
+
+      params: new HttpParams()
+      
+    }
+
+    return this.http.get("http://localhost:3000/api/transaccion/"+id, httpOptions);
+  }
+
   getTransacciones():Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders(
@@ -89,5 +104,33 @@ export class TransaccionService {
     let body = JSON.stringify(transaccion);
     
     return this.http.post("http://localhost:3000/api/transaccion",body,httpOptions);
+  }
+
+  editTransaccion(t:Transaccion):Observable<any>{
+    let httpOptions={
+      headers: new HttpHeaders(
+        {
+          "Content-type": "application/json"
+        }
+      ),
+      params: new HttpParams()
+    }
+
+    let body = JSON.stringify(t);
+
+    return this.http.put("http://localhost:3000/api/transaccion/"+t._id,body,httpOptions);
+  }
+
+  deleteTransaccion(id:string):Observable<any>{
+    let httpOptions={
+      headers: new HttpHeaders(
+        {
+
+        }
+      ),
+      params: new HttpParams()
+    }
+
+    return this.http.delete("http://localhost:3000/api/transaccion/"+id,httpOptions);
   }
 }

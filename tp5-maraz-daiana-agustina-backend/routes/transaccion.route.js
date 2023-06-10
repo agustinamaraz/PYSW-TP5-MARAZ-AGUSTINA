@@ -4,11 +4,16 @@ const transaccionCtrl = require('./../controllers/transaccion.controller');
 const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de transaccionCtrl
-router.get('/', transaccionCtrl.getTransacciones); //se va a llamar-> http://localhost:3000/api/transaccion/
+
+//se va a llamar-> http://localhost:3000/api/transaccion/
+router.get('/', transaccionCtrl.getTransacciones);
+//router.get('/:id', transaccionCtrl.getTransaccion);
+
+router.get('/moneda', transaccionCtrl.getTransaccionesPorMonedas);
+
 router.post('/', transaccionCtrl.createTransaccion);
-router.get('/moneda',transaccionCtrl.getTransaccionesPorMonedas);
 router.get('/:email', transaccionCtrl.getTransaccionesDeUnCliente);
-router.delete('/:id',transaccionCtrl.deleteTransaccion);
+router.delete('/:id', transaccionCtrl.deleteTransaccion);
 
 // //no estan
 // router.delete('/:id', transaccionCtrl.deleteTransaccion);

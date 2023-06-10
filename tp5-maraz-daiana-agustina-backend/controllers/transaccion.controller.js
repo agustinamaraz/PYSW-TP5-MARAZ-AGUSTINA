@@ -1,6 +1,10 @@
 const Transaccion = require('../models/transaccion');
 const transaccionCtrl = {}
 
+transaccionCtrl.getTransaccion = async (req, res) => {
+    const t = await Transaccion.findById(req.params.id);
+    res.json(t);
+}
 
 transaccionCtrl.getTransacciones = async (req, res) => {
     var transacciones = await Transaccion.find();

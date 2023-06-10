@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Console, error } from 'console';
 import { Transaccion } from 'src/app/models/transaccion';
 import { TransaccionService } from 'src/app/services/transaccion.service';
@@ -16,14 +17,30 @@ export class Punto2TransaccionComponent implements OnInit {
   click!:boolean;
   monedaOrigen!: string;
   monedaDestino!: string;
+  monedas!: Array<any>;
 
-  constructor(private transaccionService: TransaccionService) {
+  constructor(private transaccionService: TransaccionService, private router:Router) {
     this.transacciones = new Array<Transaccion>();
     this.transaccionesFiltro = new Array<Transaccion>();
-
+    this.monedas = new Array<any>();
+    this.obtenerMonedas();
   }
 
   ngOnInit(): void {
+  }
+
+  public obtenerMonedas(){
+    this.transaccionService.getMonedas().subscribe(
+      (result)=>{ // devuelve un arreglo
+        for(let i:number=0; i<10;i++){ //solo carga los 10 primeros de los 162 que hay
+          this.monedas.push(result[i]);
+        }
+        console.log(this.monedas);
+      },
+      error => {
+        alert("Error");
+      }
+    )
   }
 
   obtenerTransacciones() {
@@ -62,6 +79,24 @@ export class Punto2TransaccionComponent implements OnInit {
       },
       error => {
         console.log(error);
+      }
+    )
+  }
+
+  modificarTransaccion(t:Transaccion){
+    this.router.navigate(["transaccion-form",t._id])
+  }
+
+  eliminarTransaccion(t:Transaccion){
+    this.transaccionService.deleteTransaccion(t._id).subscribe(
+      result=>{
+        if(result.status == 1){
+          alert(result.msg);
+          window.location.reload();
+        }
+      },
+      error=>{
+        alert(error.msg);
       }
     )
   }

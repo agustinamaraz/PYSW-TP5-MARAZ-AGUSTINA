@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Transaccion } from 'src/app/models/transaccion';
 import { TransaccionService } from 'src/app/services/transaccion.service';
 
@@ -13,14 +13,37 @@ export class Punto2TransaccionFormComponent implements OnInit {
   monedas!: Array<any>;
   tasaConversion:string="Se mostrará una vez presionado el botón 'Convertir'";
   habilitarGuardar:boolean=false;
+  accion:string="";
 
-  constructor(private transaccionService: TransaccionService, private router:Router) {
+  constructor(private transaccionService: TransaccionService, private router:Router, private activatedRoute:ActivatedRoute) {
     this.transaccion = new Transaccion();
     this.monedas = new Array<any>();
     this.obtenerMonedas();
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(
+      params => {
+        if (params['id'] == 0) {
+          this.accion = "new";
+        } else {
+          this.accion = "update";
+          this.cargarTransaccion(params['id']);
+        }
+      }
+    )
+  }
+
+  cargarTransaccion(id:string){
+    this.transaccionService.getTransaccion(id).subscribe(
+      (result) => {
+        Object.assign(this.transaccion, result);
+        //this.transaccion.monedaOrigen = this.monedas.find((item) => ((item.symbol) == this.transaccion.monedaOrigen))!;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   public obtenerMonedas(){

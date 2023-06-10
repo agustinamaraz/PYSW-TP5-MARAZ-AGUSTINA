@@ -16,6 +16,7 @@
                 <th scope="col">CANTIDAD DESTINO</th>
                 <th scope="col">EMAIL CLIENTE</th>
                 <th scope="col">TASA CONVERSION</th>
+                <th scope="col">operaciones</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,10 @@
                 <td>{{t.cantidadDestino}}</td>
                 <td>{{t.emailCliente}}</td>
                 <td>{{t.tasaConversion}}</td>
+                <td>
+                    <!-- <button type="button" class="btn btn-warning w-100" (click)="modificarTransaccion(t)">MODIFICAR</button> -->
+                    <button type="button" class="btn btn-danger w-100" (click)="eliminarTransaccion(t)">ELIMINAR</button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -35,13 +40,19 @@
         <form class="p-3 m-3 bg-success-subtle">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Ingresar Moneda Origen:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    name="monedaOrigen" [(ngModel)]="monedaOrigen">
+                <!-- <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="monedaOrigen" [(ngModel)]="monedaOrigen"> -->
+                <select name="monedaOrigen" class="form-select" id="moneda" [(ngModel)]="monedaOrigen" >
+                    <option *ngFor="let m of monedas" value="{{m.symbol}}">{{m.symbol}}-{{m.name}}</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Ingresar Moneda Destino:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    name="monedaDestino" [(ngModel)]="monedaDestino">
+                <!-- <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="monedaDestino" [(ngModel)]="monedaDestino"> -->
+                <select name="monedaDestino" class="form-select" id="moneda" [(ngModel)]="monedaDestino">
+                    <option *ngFor="let m of monedas" value="{{m.symbol}}">{{m.symbol}}-{{m.name}}</option>
+                </select>
             </div>
             <button type="submit" class="btn btn-primary" (click)="obtenerTransaccionesPorFiltro()">Filtrar</button>
         </form>
