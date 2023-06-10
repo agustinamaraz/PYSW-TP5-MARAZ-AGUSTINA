@@ -11,7 +11,7 @@ import { TransaccionService } from 'src/app/services/transaccion.service';
 export class Punto2TransaccionFormComponent implements OnInit {
   transaccion!: Transaccion;
   monedas!: Array<any>;
-  tasaConversion:string="Aún no Seleccionada";
+  tasaConversion:string="Se mostrará una vez presionado el botón 'Convertir'";
   habilitarGuardar:boolean=false;
 
   constructor(private transaccionService: TransaccionService, private router:Router) {

@@ -1,7 +1,7 @@
 <div class="m-5 bg-secondary d-flex justify-content-center align-items-center">
 
   <!--FORM-->
-  <form #productoForm="ngForm" class="m-5 w-50 formulario-azul text-white p-3">
+  <form class="m-5 w-50 formulario-azul text-white p-3" #productoForm="ngForm" >
     <h3 class="text-center bg-primary bg-opacity-75 p-2">Formulario Producto</h3>
     <div class="mb-3">
       <label for="idnombre" class="form-label">Nombre</label>
@@ -44,18 +44,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="mb-3">
-      <label for="idemail" class="form-label">Email</label>
-      <input name="stock" type="number" class="form-control" id="idemail" [(ngModel)]="producto.stock" required #email="ngModel" [email]="true">
-      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-        <div *ngIf="email.errors?.['required']">
-          El email es requerido.
-        </div>
-        <div *ngIf="email.errors?.['email']">
-          El email debe estar formateado correctamente
-        </div>
-      </div>
-    </div> -->
     <div class="mb-3">
       <label for="idemail" class="form-label">Stock</label>
       <input name="stock" type="number" class="form-control" id="idemail" [(ngModel)]="producto.stock" required #stock="ngModel">
