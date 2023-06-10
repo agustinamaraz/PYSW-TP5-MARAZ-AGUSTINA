@@ -62,4 +62,18 @@ export class Punto1ProductoComponent implements OnInit {
     this.router.navigate(["producto-form",producto._id])
   }
 
+  eliminarProducto(p:Producto){
+    this.productoService.deleteProducto(p._id).subscribe(
+      (result:any)=>{
+        if(result.status == 1){
+          alert(result.msg);
+          window.location.reload();
+        }
+      },
+      (error:any)=>{
+        alert(error.msg);
+      }
+    )
+  }
+
 }

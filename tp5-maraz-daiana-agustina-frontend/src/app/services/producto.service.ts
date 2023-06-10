@@ -83,4 +83,17 @@ export class ProductoService {
     return this.http.put("http://localhost:3000/api/producto/"+producto._id,body,httpOptions);
   }
 
+  deleteProducto(id:string):Observable<any>{
+    let httpOptions={
+      headers: new HttpHeaders(
+        {
+
+        }
+      ),
+      params: new HttpParams()
+    }
+
+    return this.http.delete("http://localhost:3000/api/producto/"+id,httpOptions);
+  }
+
 }

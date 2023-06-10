@@ -5,13 +5,16 @@
 
   <div class="row d-flex justify-content-center align-items-center">
     <div class="card m-3" style="width: 18rem;" *ngFor="let p of productos">
+      <h5 class="card-title bg-success text-white p-2 text-center">{{p.nombre | uppercase}}</h5>
       <img src="{{p.imagen}}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{p.nombre}}</h5>
+      <div class="card-body text-center bg-secondary-subtle">
         <p class="card-text">{{p.descripcion}}</p>
         <p class="card-text">Stock disponible: {{p.stock}} unidades</p>
-        <a class="m-2 w-100 btn btn-primary">Precio: ${{p.precio}}</a>
+        <p class="m-2 w-100">Precio: ${{p.precio}}</p>
+      </div>
+      <div class="card-footer">
         <a class="m-2 w-100 btn btn-warning" (click)="modificarProducto(p)">Modificar Producto</a>
+        <a class="m-2 w-100 btn btn-danger" (click)="eliminarProducto(p)">Eliminar Producto</a>
       </div>
     </div>
   </div>
