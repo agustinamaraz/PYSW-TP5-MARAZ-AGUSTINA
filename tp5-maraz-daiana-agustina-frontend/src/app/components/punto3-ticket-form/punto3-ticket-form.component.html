@@ -16,9 +16,14 @@
         </div>
         <div class="mb-3">
             <label for="categoria" class="form-label">Categoria Espectador: </label>
-            <input type="text" class="form-control" id="categoria" name="categoriaEspectador" required
+            <!-- <input type="text" class="form-control" id="categoria" name="categoriaEspectador" required
                 placeholder="Ingrese categoria del espectador" [(ngModel)]="ticket.categoriaEspectador"
-                #categoria="ngModel">
+                #categoria="ngModel"> -->
+            <select class="form-select" aria-label="Default select example" id="tipo" name="categoriaEspectador"
+                [(ngModel)]="ticket.categoriaEspectador" required #categoria="ngModel">
+                <option value="extranjero">Extranjero</option>
+                <option value="local">Local</option>
+            </select>
             <!-- validacion -->
             <div *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)" class="alert alert-danger">
                 <div *ngIf="categoria.errors?.['required']">

@@ -34,12 +34,17 @@
 
     <div *ngIf="filtro==true">
         <form class="p-3 m-3 bg-success-subtle">
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Ingresar Categoria Espectador:</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    name="categoriaEspectador" [(ngModel)]="categoriaEspectador">
+            <div class="mb-3 text-center d-flex justify-content-center">
+                <label for="exampleInputEmail1" class="form-label m-3 fw-bold">Seleccione Categoria Espectador:</label>
+                <!-- <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    name="categoriaEspectador" [(ngModel)]="categoriaEspectador"> -->
+                <select class="form-select w-50" aria-label="Default select example" id="tipo" name="categoriaEspectador" [(ngModel)]="categoriaEspectador">
+                    <option value="extranjero">Extranjero</option>
+                    <option value="local">Local</option>
+                </select>
             </div>
-            <button type="submit" class="btn btn-primary" (click)="obtenerTicketsPorCategoria()">Filtrar</button>
+
+            <button type="submit" class="btn btn-success w-100" (click)="obtenerTicketsPorCategoria()">Filtrar</button>
         </form>
 
         <div *ngIf="ticketsPorCategoria.length==0 && click==true">
