@@ -1,41 +1,39 @@
-<div class="card">
-    <div class="m-5 p-3 text-center fw-bold h1 bg-info bg-opacity-10 border border-info border-start-0 rounded-end">
-        Formulario para cargar un producto
+<div class="m-5 bg-secondary d-flex justify-content-center align-items-center">
+
+  <!--FORM-->
+  <form class="m-5 w-50 formulario-azul text-white p-3">
+    <h3 class="text-center bg-primary bg-opacity-75 p-2">Formulario Producto</h3>
+    <div class="mb-3">
+      <label for="idnombre" class="form-label">Nombre</label>
+      <input name="nombre" type="text" class="form-control" id="idnombre" [(ngModel)]="producto.nombre">
     </div>
-    <div class="card-body bg-warning-subtle">
-        <form>
-            <div class="mb-3">
-                <label for="idnombre" class="form-label">Nombre</label>
-                <input name="nombre" type="text" class="form-control" id="idnombre"
-                    [(ngModel)]="producto.nombre" >
-              </div>
-              <div class="mb-3">
-                <label for="idfuncion" class="form-label">Descripcion</label>
-                <textarea name="descripcion" class="form-control" id="idfuncion" rows="3"
-                [(ngModel)]="producto.descripcion"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="idemail" class="form-label">Ingresar url de la imagen</label>
-                <input name="email" type="text" class="form-control" id="idemail"
-                [(ngModel)]="producto.imagen">
-              </div>
-              <div class="mb-3">
-                <label for="idemail" class="form-label">Precio</label>
-                <input name="precio" type="number" class="form-control" id="idemail"
-                [(ngModel)]="producto.precio">
-              </div>
-              <div class="mb-3">
-                <label for="idemail" class="form-label">Stock</label>
-                <input name="stock" type="number" class="form-control" id="idemail"
-                [(ngModel)]="producto.stock">
-              </div>
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="destacado" [(ngModel)]="producto.destacado">
-                <label class="form-check-label" for="exampleCheck1">¿Producto Destacado?</label>
-              </div>
-            
-              <button type="button" class="btn btn-primary" (click)="guardarProducto()">Guardar</button>             
-              <button type="button" class="btn btn-primary" (click)="actualizarProducto()">Modificar</button>
-        </form>
+    <div class="mb-3">
+      <label for="idfuncion" class="form-label">Descripcion</label>
+      <textarea name="descripcion" class="form-control" id="idfuncion" rows="3"
+        [(ngModel)]="producto.descripcion"></textarea>
     </div>
+    <div class="mb-3">
+      <label for="idemail" class="form-label">Ingresar url de la imagen</label>
+      <input name="email" type="text" class="form-control" id="idemail" [(ngModel)]="producto.imagen">
+    </div>
+    <div class="mb-3">
+      <label for="idemail" class="form-label">Precio</label>
+      <input name="precio" type="number" class="form-control" id="idemail" [(ngModel)]="producto.precio">
+    </div>
+    <div class="mb-3">
+      <label for="idemail" class="form-label">Stock</label>
+      <input name="stock" type="number" class="form-control" id="idemail" [(ngModel)]="producto.stock">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" name="destacado"
+        [(ngModel)]="producto.destacado">
+      <label class="form-check-label" for="exampleCheck1">¿Producto Destacado?</label>
+    </div>
+
+    <button *ngIf="accion=='new'" type="button" class="btn btn-warning" (click)="guardarProducto()">Guardar</button>
+    <button *ngIf="accion=='update'" type="button" class="btn btn-warning" (click)="actualizarProducto()">Modificar</button>
+    <button type="submit" class="btn btn-danger ms-2" (click)="cancelar()">Cancelar</button>
+  </form>
+  <!--FORM-->
+  
 </div>

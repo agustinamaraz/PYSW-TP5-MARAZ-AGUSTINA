@@ -33,7 +33,7 @@ export class Punto1ProductoFormComponent implements OnInit {
         Object.assign(this.producto,result);
       },
       error=>{
-
+        console.log(error);
       }
     )
   }
@@ -43,6 +43,7 @@ export class Punto1ProductoFormComponent implements OnInit {
       result=>{
         if(result.status == 1){
           alert(result.msg);
+          this.router.navigate(["producto"])
         }
       },
       error=>{
@@ -50,13 +51,23 @@ export class Punto1ProductoFormComponent implements OnInit {
       }
     )
     
-    this.router.navigate(["producto"])
-    
   }
 
   actualizarProducto(){
+    this.productoService.editProducto(this.producto).subscribe(
+      (result:any) => {
+        if (result.status == 1) {
+          alert(result.msg);
+          this.router.navigate(["producto"])
+        }
+      },
+      (error:any) => {
+        alert(error.msg);
+      }
+    )
+  }
 
-    
+  cancelar(){
     this.router.navigate(["producto"])
   }
 
