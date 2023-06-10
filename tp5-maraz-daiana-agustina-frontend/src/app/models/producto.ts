@@ -5,5 +5,5 @@ export class Producto {
     imagen!: string;
     precio!: number;
     stock!: number;
-    destacado!: boolean;
+    destacado: boolean=false;
 }

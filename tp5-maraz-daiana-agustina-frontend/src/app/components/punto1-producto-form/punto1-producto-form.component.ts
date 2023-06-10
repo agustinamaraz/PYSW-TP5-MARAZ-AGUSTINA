@@ -46,7 +46,7 @@ export class Punto1ProductoFormComponent implements OnInit {
           this.router.navigate(["producto"])
         }
       },
-      error=>{
+      (error:any)=>{
         alert(error.msg);
       }
     )
