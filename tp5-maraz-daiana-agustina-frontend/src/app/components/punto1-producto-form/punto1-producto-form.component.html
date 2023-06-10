@@ -1,28 +1,69 @@
 <div class="m-5 bg-secondary d-flex justify-content-center align-items-center">
 
   <!--FORM-->
-  <form class="m-5 w-50 formulario-azul text-white p-3">
+  <form #productoForm="ngForm" class="m-5 w-50 formulario-azul text-white p-3">
     <h3 class="text-center bg-primary bg-opacity-75 p-2">Formulario Producto</h3>
     <div class="mb-3">
       <label for="idnombre" class="form-label">Nombre</label>
-      <input name="nombre" type="text" class="form-control" id="idnombre" [(ngModel)]="producto.nombre">
+      <input name="nombre" type="text" class="form-control" id="idnombre" [(ngModel)]="producto.nombre" required #nombre="ngModel" minlength="4">
+      
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+        <div *ngIf="nombre.errors?.['required']">
+          El nombre es requerido.
+        </div>
+        <div *ngIf="nombre.errors?.['minlength']">
+          El nombre debe tener al menos 4 caracteres.
+        </div>
+      </div>
     </div>
     <div class="mb-3">
       <label for="idfuncion" class="form-label">Descripcion</label>
-      <textarea name="descripcion" class="form-control" id="idfuncion" rows="3"
-        [(ngModel)]="producto.descripcion"></textarea>
+      <textarea name="descripcion" class="form-control" id="idfuncion" rows="3" [(ngModel)]="producto.descripcion"
+        required #descripcion="ngModel"></textarea>
+        <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="alert alert-danger">
+          <div *ngIf="descripcion.errors?.['required']">
+            La descripcion es requerido.
+          </div>
+        </div>
     </div>
     <div class="mb-3">
       <label for="idemail" class="form-label">Ingresar url de la imagen</label>
-      <input name="email" type="text" class="form-control" id="idemail" [(ngModel)]="producto.imagen">
+      <input name="email" type="text" class="form-control" id="idemail" [(ngModel)]="producto.imagen" required #url="ngModel">
+      <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger">
+        <div *ngIf="url.errors?.['required']">
+          La url es requerida.
+        </div>
+      </div>
     </div>
     <div class="mb-3">
       <label for="idemail" class="form-label">Precio</label>
-      <input name="precio" type="number" class="form-control" id="idemail" [(ngModel)]="producto.precio">
+      <input name="precio" type="number" class="form-control" id="idemail" [(ngModel)]="producto.precio" required #precio="ngModel">
+      <div *ngIf="precio.invalid && (precio.dirty || precio.touched)" class="alert alert-danger">
+        <div *ngIf="precio.errors?.['required']">
+          El precio es requerido.
+        </div>
+      </div>
     </div>
+    <!-- <div class="mb-3">
+      <label for="idemail" class="form-label">Email</label>
+      <input name="stock" type="number" class="form-control" id="idemail" [(ngModel)]="producto.stock" required #email="ngModel" [email]="true">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+        <div *ngIf="email.errors?.['required']">
+          El email es requerido.
+        </div>
+        <div *ngIf="email.errors?.['email']">
+          El email debe estar formateado correctamente
+        </div>
+      </div>
+    </div> -->
     <div class="mb-3">
       <label for="idemail" class="form-label">Stock</label>
-      <input name="stock" type="number" class="form-control" id="idemail" [(ngModel)]="producto.stock">
+      <input name="stock" type="number" class="form-control" id="idemail" [(ngModel)]="producto.stock" required #stock="ngModel">
+      <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="alert alert-danger">
+        <div *ngIf="stock.errors?.['required']">
+          El stock es requerido.
+        </div>
+      </div>
     </div>
     <div class="mb-3 form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1" name="destacado"
@@ -30,10 +71,11 @@
       <label class="form-check-label" for="exampleCheck1">¿Producto Destacado?</label>
     </div>
 
-    <button *ngIf="accion=='new'" type="button" class="btn btn-warning" (click)="guardarProducto()">Guardar</button>
-    <button *ngIf="accion=='update'" type="button" class="btn btn-warning" (click)="actualizarProducto()">Modificar</button>
+    <button *ngIf="accion=='new'" type="button" class="btn btn-warning" (click)="guardarProducto()" [disabled]="productoForm.invalid">Guardar</button>
+    <button *ngIf="accion=='update'" type="button" class="btn btn-warning"
+      (click)="actualizarProducto()">Modificar</button>
     <button type="submit" class="btn btn-danger ms-2" (click)="cancelar()">Cancelar</button>
   </form>
   <!--FORM-->
-  
+
 </div>
